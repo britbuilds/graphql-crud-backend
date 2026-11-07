@@ -1,0 +1,54 @@
+enum MediaType {
+  ANIME
+  MOVIE
+  TV
+  ALBUM
+}
+
+type Media {
+  id: ID!
+  type: MediaType!
+  title: String!
+  status: String
+  synopsis: String
+  releaseYear: Int
+  episodes: Int
+  runtime: Int
+  trackCount: Int
+  coverImage: String
+}
+
+type Query {
+  media(id: ID!): Media
+  mediaList(type: MediaType): [Media!]!
+}
+
+input CreateMediaInput {
+  type: MediaType!
+  title: String!
+  status: String
+  synopsis: String
+  releaseYear: Int
+  episodes: Int
+  runtime: Int
+  trackCount: Int
+  coverImage: String
+}
+
+type Mutation {
+  createMedia(input: CreateMediaInput!): Media!
+  updateMedia(id: ID!, input: UpdateMediaInput!): Media
+  deleteMedia(id: ID!): Boolean!
+}
+
+input UpdateMediaInput {
+  type: MediaType
+  title: String
+  status: String
+  synopsis: String
+  releaseYear: Int
+  episodes: Int
+  runtime: Int
+  trackCount: Int
+  coverImage: String
+}
